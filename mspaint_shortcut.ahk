@@ -19,5 +19,5 @@ e::
 Send {Alt}
 Send H
 Send B
-Send {Enter}
+Send {Home}{Enter}
 return
