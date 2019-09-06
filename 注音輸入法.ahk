@@ -1,9 +1,19 @@
-﻿^+!z::
-current_clipboard = %Clipboard% ;
-IME_SET(1)
-Send ^c
-Send %Clipboard%
-Clipboard = %current_clipboard% ;
+﻿^!+z::
+current_Clipboard = %Clipboard%
+if % substr(a_osversion, 1, 2) >= 8
+{
+	Send ^c
+	Send %Clipboard%
+}
+else
+{
+	cn := DllCall("LoadKeyboardLayout", "Str", "00000404", "Int", 1)
+	PostMessage 0x50, 0, %cn%,, A
+	IME_SET(1)
+	Send ^c
+	Send %Clipboard%
+}
+Clipboard = %current_Clipboard%
 return
 
 ;https://blog.csdn.net/liuyukuan/article/details/81939497
